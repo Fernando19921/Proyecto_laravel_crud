@@ -56,7 +56,44 @@
                     <span class="nav-link-text ms-1">Registrar</span> <!-- Cambiar el texto a "Registrar" -->
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link text-white {{ $activePage == 'providers' ? ' active bg-gradient-primary' : '' }}" href="{{ route('profesores.index') }}">
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fas fa-chalkboard-teacher opacity-10"></i> <!-- Icono para profesores -->
+                    </div>
+                    <span class="nav-link-text ms-1">Profesor</span> <!-- Texto para profesores -->
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white {{ $activePage == 'materias' ? ' active bg-gradient-primary' : '' }}" href="{{ route('materias.index') }}">
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fas fa-book opacity-10"></i> <!-- Icono para materias -->
+                    </div>
+                    <span class="nav-link-text ms-1">Materias</span> <!-- Texto para materias -->
+                </a>
+            </li>
 
+            <li class="nav-item">
+                <a class="nav-link text-white {{ $activePage == 'salones' ? ' active bg-gradient-primary' : '' }}" href="{{ route('aulas.index') }}">
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fas fa-school opacity-10"></i> <!-- Icono para aulas -->
+                    </div>
+                    <span class="nav-link-text ms-1">Aulas</span> <!-- Texto para aulas -->
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white {{ $activePage == 'asignarMateriaProfesor' ? ' active bg-gradient-primary' : '' }}" href="{{ route('asignarMateria.index') }}">
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fas fa-chalkboard-teacher opacity-10"></i> <!-- Icono para asignar materias a profesores -->
+                    </div>
+                    <span class="nav-link-text ms-1">Asignar Materias a Profesores</span> <!-- Texto para el enlace -->
+                </a>
+            </li>
+            
+            
+            
+            
+            
             <li class="nav-item">
                 <a class="nav-link text-white {{ $activePage == 'update' ? ' active bg-gradient-primary' : '' }}"href="{{ route('alumnos.index') }}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -142,18 +179,5 @@
                 </a>
             </li>
         </ul>
-    </div>
-    <div class="sidenav-footer position-absolute w-100 bottom-0 ">
-        <div class="mx-3">
-            <a class="btn bg-gradient-primary w-100" href="https://www.creative-tim.com/product/material-dashboard-laravel" target="_blank">Free Download</a>
-        </div>
-        <div class="mx-3">
-            <a class="btn bg-gradient-primary w-100" href="../../documentation/getting-started/installation.html" target="_blank">View documentation</a>
-        </div>
-        <div class="mx-3">
-            <a class="btn bg-gradient-primary w-100"
-                href="https://www.creative-tim.com/product/material-dashboard-pro-laravel" target="_blank" type="button">Upgrade
-                to pro</a>
-        </div>
     </div>
 </aside>

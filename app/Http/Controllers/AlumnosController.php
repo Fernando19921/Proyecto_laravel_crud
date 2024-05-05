@@ -13,25 +13,30 @@ class AlumnosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $texto = $request->input('texto'); // Obtener el texto de la solicitud
-    
-        return view('alumnos.edit_axios')->with('texto', $texto);
+        $alumnos = Alumnos::all();
+        return view('alumnos.edit_axios', ['alumnos' => $alumnos]);
     }
+    
+    
+  
     
     public function buscar(Request $request)
     {
         $texto = $request->input('texto'); // Obtener el texto de la solicitud
-        
-        $alumnos = Alumnos::where('nombre', 'LIKE', '%' . $texto . '%')
-    ->orWhere('matricula', 'LIKE', '%' . $texto . '%')
-    ->orderBy('id', 'asc') // Ordenar por el campo 'id' de forma ascendente
-    ->paginate(10);
-
-    return response()->json($alumnos);
-
+        // Obtener la primera letra del texto ingresado
+        $primera_letra = substr($texto, 0, 1);
+        // Consulta para buscar por la primera letra del nombre o matrícula
+        $alumnos = Alumnos::where(function($query) use ($primera_letra) {
+                $query->where('nombre', 'LIKE', $primera_letra . '%')
+                      ->orWhere('matricula', 'LIKE', $primera_letra . '%');
+            })
+            ->orderBy('id', 'asc') // Ordenar por el campo 'id' de forma ascendente
+            ->paginate(10);
+        return response()->json($alumnos);
     }
+    
     
     
 
@@ -42,7 +47,6 @@ class AlumnosController extends Controller
      */
     public function create(Request $request)
     {
-     
         return view('alumnos.create');
         //
     }
@@ -70,8 +74,6 @@ class AlumnosController extends Controller
             'telefono' => $request->input('telefono'),
             'email' => $request->input('email')
         ]);
-
-        
 
         return view("alumnos.menssage",['msg'=> "Registro guardado"]); //Este reurn va a mostrar un msn cuando el regsitra
         //se haya guardado correctamente para esto se crea otra vista menssage.blade.php
@@ -146,7 +148,7 @@ class AlumnosController extends Controller
         $alumno= Alumnos::find($id);
         $alumno->delete();
 
-        return view("alumnos.edit_axios");
+        return view("alumnos.menssage",['msg'=> "Registro Correctamente Borrado"]);
         //
     }
 }
